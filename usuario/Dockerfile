@@ -1,19 +1,23 @@
-# Etapa 1: Compilar la aplicación posicionados en la raíz del proyecto completo
+# Etapa 1: Compilar la aplicación de forma independiente
 FROM maven:3.9.9-eclipse-temurin-21-alpine AS build
 WORKDIR /workspace
 
-# Copiamos TODOS los archivos (incluyendo el pom.xml padre de la raíz)
-COPY . .
+# 1. Copiamos el archivo pom.xml del microservicio
+COPY ./usuario/pom.xml ./pom.xml
 
-# Compilamos el módulo de usuario usando el pom.xml de la raíz como guía
-RUN mvn clean package -pl usuario -am -DskipTests
+# 2. Truco para ignorar el POM padre si da problemas en la nube:
+# Removemos la etiqueta <parent> del pom.xml temporal si sigue fallando,
+# o simplemente descargamos las dependencias directas:
+COPY ./usuario/src ./src
 
-# Etapa 2: Crear la imagen final de ejecución liviana
+# 3. Compilamos el jar directamente
+RUN mvn clean package -DskipTests
+
+# Etapa 2: Imagen final de ejecución
 FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 
-# Copiamos el JAR que se generó dentro de la ruta del módulo correspondiente
-COPY --from=build /workspace/usuario/target/*.jar app.jar
+COPY --from=build /workspace/target/*.jar app.jar
 
 EXPOSE 8082
 ENTRYPOINT ["java", "-jar", "app.jar"]
