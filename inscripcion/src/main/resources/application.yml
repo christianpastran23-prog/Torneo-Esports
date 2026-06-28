@@ -1,0 +1,49 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: inscripcion
+
+  datasource:
+    url: jdbc:mysql://db-mysql:3306/db_torneo_esports
+    username: root
+    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    locations: classpath:db/migration
+    table: fly_away_schema_history_inscripcion
+    baseline-version: "0"
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+
+jwt:
+  secret: laClaveDeLosEsportsEstanLargaLoSuficiente
+
+usuario-service:
+  url: http://usuario
+
+torneo-service:
+  url: http://torneo
+
+juegos-service:
+  url: http://juegos
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka/}
+  instance:
+    prefer-ip-address: true

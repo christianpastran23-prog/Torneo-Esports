@@ -1,0 +1,12 @@
+com\fullstack\juegos\controller\JuegosController.class
+com\fullstack\juegos\dto\JuegosRequest.class
+com\fullstack\juegos\exception\GlobalExceptionHandler.class
+com\fullstack\juegos\repository\JuegosRepository.class
+com\fullstack\juegos\config\DataLoader.class
+com\fullstack\juegos\security\JwtService.class
+com\fullstack\juegos\dto\ApiErrorResponse.class
+com\fullstack\juegos\JuegosApplication.class
+com\fullstack\juegos\model\Juego.class
+com\fullstack\juegos\security\JwtAuthenticationsFilter.class
+com\fullstack\juegos\service\JuegoService.class
+com\fullstack\juegos\config\SecurityConfig.class

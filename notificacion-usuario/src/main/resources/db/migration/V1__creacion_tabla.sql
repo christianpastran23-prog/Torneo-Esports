@@ -1,0 +1,7 @@
+CREATE TABLE notificaciones(
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    usuarioId BIGINT NOT NULL,
+    username VARCHAR(255) NOT NULL,
+    leido VARCHAR(255) NOT NULL,
+    mensaje VARCHAR(255) NOT NULL
+);

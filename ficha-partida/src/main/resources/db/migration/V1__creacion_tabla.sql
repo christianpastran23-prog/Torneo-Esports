@@ -1,0 +1,20 @@
+CREATE TABLE ficha_partida(
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    usuarioId BIGINT NOT NULL,
+    torneoId BIGINT NOT NULL,
+    juegoId BIGINT NOT NULL,
+    username VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    puntaje INTEGER NOT NULL,
+    fechaInicio DATETIME NOT NULL,
+    premioDolares INTEGER,
+    titulo VARCHAR(255) NOT NULL,
+    categoria VARCHAR(255) NOT NULL,
+    nombreTorneo VARCHAR(255) NOT NULL,
+    estado VARCHAR(255) NOT NULL,
+    region VARCHAR(255) NOT NULL,
+    KD INTEGER,
+    resultado VARCHAR(255) NOT NULL,
+    puntos INTEGER,
+    fechaPartida DATETIME NOT NULL
+);

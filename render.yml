@@ -1,0 +1,56 @@
+# Render Blueprint - Torneo Esports
+# Los servicios compilan usando el Dockerfile de su propia carpeta.
+services:
+  # ----------------------------------------------------
+  # 1. SERVICIO DE USUARIOS
+  # ----------------------------------------------------
+  - type: web
+    name: christianpastran-torneo-usuario
+    runtime: docker
+    plan: free
+    dockerfilePath: Dockerfile
+    dockerContext: ./usuario
+    healthCheckPath: /actuator/health
+    envVars:
+      - key: EUREKA_ENABLED
+        value: false
+      # Dejamos la base de datos abierta a una variable externa para que le pongas la de Render o Laragon Online
+      - key: SPRING_DATASOURCE_URL
+        value: ${DATABASE_URL_EXTERNAL}
+      - key: SPRING_DATASOURCE_USERNAME
+        value: ${DATABASE_USER}
+      - key: SPRING_DATASOURCE_PASSWORD
+        value: ${DATABASE_PASSWORD}
+
+  # ----------------------------------------------------
+  # 2. SERVICIO DE AUTENTICACIÓN
+  # ----------------------------------------------------
+  - type: web
+    name: christianpastran-torneo-auth
+    runtime: docker
+    plan: free
+    dockerfilePath: Dockerfile
+    dockerContext: ./auth-service
+    healthCheckPath: /actuator/health
+    envVars:
+      - key: EUREKA_ENABLED
+        value: false
+
+  # ----------------------------------------------------
+  # 3. API GATEWAY (Entrada principal pública)
+  # ----------------------------------------------------
+  - type: web
+    name: christianpastran-torneo-gateway
+    runtime: docker
+    plan: free
+    dockerfilePath: Dockerfile
+    dockerContext: ./getaway-service
+    healthCheckPath: /actuator/health
+    envVars:
+      - key: EUREKA_ENABLED
+        value: false
+      # El Gateway redirige las peticiones apuntando a las URLs públicas de Render de cada servicio
+      - key: USUARIO_SERVICE_URL
+        value: https://christianpastran-torneo-usuario.onrender.com
+      - key: AUTH_SERVICE_URL
+        value: https://christianpastran-torneo-auth.onrender.com

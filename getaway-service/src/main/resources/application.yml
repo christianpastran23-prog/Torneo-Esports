@@ -1,0 +1,91 @@
+server:
+  port: ${PORT:8091}
+
+spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+      routes:
+        # 1. auth-Service
+        - id: auth-service
+          uri: lb://auth-Service
+          predicates:
+            - Path=/api/auth/**
+
+        # 2. usuario
+        - id: usuario
+          uri: lb://usuario
+          predicates:
+            - Path=/api/usuarios/**
+
+        # 3. torneo
+        - id: torneo
+          uri: lb://torneo
+          predicates:
+            - Path=/api/torneos/**
+
+        # 4. juegos
+        - id: juegos
+          uri: lb://juegos
+          predicates:
+            - Path=/api/juegos/**
+
+        # 5. inscripcion
+        - id: inscripcion
+          uri: lb://inscripcion
+          predicates:
+            - Path=/api/inscripciones/**
+
+        # 6. ficha-partida
+        - id: ficha-partida
+          uri: lb://ficha-partida
+          predicates:
+            - Path=/api/fichas-partidas/**
+
+        # 7. patrocinador-torneo
+        - id: patrocinador-torneo
+          uri: lb://patrocinador-torneo
+          predicates:
+            - Path=/api/patrocinadores-torneos/**
+
+        # 8. notificacion-usuario
+        - id: notificacion-usuario
+          uri: lb://notificacion-usuario
+          predicates:
+            - Path=/api/notificaciones/**
+
+        # 9. historial-juego
+        - id: historial-juego
+          uri: lb://historial-juego
+          predicates:
+            - Path=/api/historiales/**
+
+        # 10. comentario-torneo
+        - id: comentario-torneo
+          uri: lb://comentario-torneo
+          predicates:
+            - Path=/api/comentarios-torneos/**
+
+        # 11. favorito-juego
+        - id: favorito-juego
+          uri: lb://favorito-juego
+          predicates:
+            - Path=/api/favoritos-juegos/**
+
+management:
+  endpoint:
+    gateway:
+      access: read-only
+  endpoints:
+    web:
+      exposure:
+        include: health,info,gateway
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka/}
+  instance:
+    prefer-ip-address: true

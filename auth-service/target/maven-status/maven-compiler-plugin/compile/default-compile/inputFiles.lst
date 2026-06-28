@@ -1,0 +1,13 @@
+C:\Users\Pastr\Desktop\torneo-esports-19-06-2026\auth-service\src\main\java\com\fullstack\auth_service\AuthServiceApplication.java
+C:\Users\Pastr\Desktop\torneo-esports-19-06-2026\auth-service\src\main\java\com\fullstack\auth_service\config\SecurityConfig.java
+C:\Users\Pastr\Desktop\torneo-esports-19-06-2026\auth-service\src\main\java\com\fullstack\auth_service\controller\AuthController.java
+C:\Users\Pastr\Desktop\torneo-esports-19-06-2026\auth-service\src\main\java\com\fullstack\auth_service\dto\ErrorResponse.java
+C:\Users\Pastr\Desktop\torneo-esports-19-06-2026\auth-service\src\main\java\com\fullstack\auth_service\dto\LoginRequest.java
+C:\Users\Pastr\Desktop\torneo-esports-19-06-2026\auth-service\src\main\java\com\fullstack\auth_service\dto\LoginResponse.java
+C:\Users\Pastr\Desktop\torneo-esports-19-06-2026\auth-service\src\main\java\com\fullstack\auth_service\exception\AuthException.java
+C:\Users\Pastr\Desktop\torneo-esports-19-06-2026\auth-service\src\main\java\com\fullstack\auth_service\exception\GlobalExceptionHandler.java
+C:\Users\Pastr\Desktop\torneo-esports-19-06-2026\auth-service\src\main\java\com\fullstack\auth_service\exception\MalCredencialException.java
+C:\Users\Pastr\Desktop\torneo-esports-19-06-2026\auth-service\src\main\java\com\fullstack\auth_service\model\Usuario.java
+C:\Users\Pastr\Desktop\torneo-esports-19-06-2026\auth-service\src\main\java\com\fullstack\auth_service\repository\UsuarioRepository.java
+C:\Users\Pastr\Desktop\torneo-esports-19-06-2026\auth-service\src\main\java\com\fullstack\auth_service\service\AuthService.java
+C:\Users\Pastr\Desktop\torneo-esports-19-06-2026\auth-service\src\main\java\com\fullstack\auth_service\service\JwtService.java

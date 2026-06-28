@@ -1,0 +1,12 @@
+com\fullstack\torneo\config\SecurityConfig.class
+com\fullstack\torneo\security\JwtAuthenticationsFilter.class
+com\fullstack\torneo\controller\TorneoController.class
+com\fullstack\torneo\repository\TorneoRepository.class
+com\fullstack\torneo\dto\ApiErrorResponse.class
+com\fullstack\torneo\TorneoApplication.class
+com\fullstack\torneo\config\DataLoader.class
+com\fullstack\torneo\exception\GlobalExceptionHandler.class
+com\fullstack\torneo\model\Torneo.class
+com\fullstack\torneo\service\TorneoService.class
+com\fullstack\torneo\security\JwtService.class
+com\fullstack\torneo\dto\TorneoRequest.class
