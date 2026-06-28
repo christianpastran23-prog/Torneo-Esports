@@ -3,14 +3,14 @@ services:
     name: christianpastran-torneo-usuario
     runtime: docker
     plan: free
-    dockerContext: ./usuario
-    dockerfilePath: ./usuario/Dockerfile
+    dockerContext: .                # <-- CAMBIADO: Ahora es el directorio raíz completo
+    dockerfilePath: ./usuario/Dockerfile  # <-- CAMBIADO: Ruta al Dockerfile desde la raíz
     healthCheckPath: /actuator/health
     envVars:
       - key: EUREKA_ENABLED
         value: false
       - key: SPRING_DATASOURCE_URL
-        value: ${DATABASE_URL_EXTERNAL} # Aquí Render mapeará tu MySQL de la nube
+        value: ${DATABASE_URL_EXTERNAL}
       - key: SPRING_DATASOURCE_USERNAME
         value: ${DATABASE_USER}
       - key: SPRING_DATASOURCE_PASSWORD
