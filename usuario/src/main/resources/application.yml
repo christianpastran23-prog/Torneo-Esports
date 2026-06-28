@@ -1,15 +1,15 @@
 server:
-  port: ${PORT:8081} # Modificado para que Render le asigne el puerto dinámico[cite: 3]
+  port: ${PORT:8081}
 
 spring:
   application:
     name: usuario
 
   datasource:
-    # Si detecta la variable de Render usa la de internet, si no, usa la tuya local[cite: 3]
-    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://db-mysql:3306/db_torneo_esports}
-    username: ${SPRING_DATASOURCE_USERNAME:root}
-    password: ${SPRING_DATASOURCE_PASSWORD:}
+    # Mapeo directo y estricto de variables para Render
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   flyway:
