@@ -1,13 +1,20 @@
 services:
-  # 1. SERVICIO DE USUARIOS
   - type: web
     name: christianpastran-torneo-usuario
     runtime: docker
     plan: free
     dockerContext: ./usuario
-    dockerfilePath: ./usuario/Dockerfile # <-- Cambia esto para que sea explícito
+    dockerfilePath: ./usuario/Dockerfile
     healthCheckPath: /actuator/health
-    # ... (el resto queda igual)
+    envVars:
+      - key: EUREKA_ENABLED
+        value: false
+      - key: SPRING_DATASOURCE_URL
+        value: ${DATABASE_URL_EXTERNAL} # Aquí Render mapeará tu MySQL de la nube
+      - key: SPRING_DATASOURCE_USERNAME
+        value: ${DATABASE_USER}
+      - key: SPRING_DATASOURCE_PASSWORD
+        value: ${DATABASE_PASSWORD}
 
   # 2. SERVICIO DE AUTENTICACIÓN
   - type: web

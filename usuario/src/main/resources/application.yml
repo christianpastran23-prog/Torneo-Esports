@@ -1,14 +1,15 @@
 server:
-  port: 8081
+  port: ${PORT:8081} # Modificado para que Render le asigne el puerto dinámico[cite: 3]
 
 spring:
   application:
     name: usuario
 
   datasource:
-    url: jdbc:mysql://db-mysql:3306/db_torneo_esports
-    username: root
-    password:
+    # Si detecta la variable de Render usa la de internet, si no, usa la tuya local[cite: 3]
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://db-mysql:3306/db_torneo_esports}
+    username: ${SPRING_DATASOURCE_USERNAME:root}
+    password: ${SPRING_DATASOURCE_PASSWORD:}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   flyway:
@@ -34,6 +35,8 @@ jwt:
 
 eureka:
   client:
+    # Desactivamos Eureka en Render usando la pauta del documento[cite: 3]
+    enabled: ${EUREKA_ENABLED:true}
     service-url:
       defaultZone: ${EUREKA_URL:http://localhost:8761/eureka/}
   instance:
