@@ -16,13 +16,13 @@ public class UsuarioModelAssembler implements RepresentationModelAssembler<Usuar
         // Creamos el modelo y le añadimos sus enlaces automáticos
         return EntityModel.of(usuario,
                 // Enlace al detalle del usuario individual (self)
-                linkTo(methodOn(UsuarioController.class).buscarPorId(usuario.getId())).withSelfRel(),
+                linkTo(methodOn(UsuarioController.class).buscarPorId(Math.toIntExact(usuario.getId()))).withSelfRel(),
 
                 // Enlace a la lista completa de usuarios
                 linkTo(methodOn(UsuarioController.class).listar()).withRel("usuarios"),
 
                 // Enlace opcional para eliminar este usuario específico
-                linkTo(methodOn(UsuarioController.class).eliminar(usuario.getId())).withRel("eliminar")
+                linkTo(methodOn(UsuarioController.class).eliminar(Math.toIntExact(usuario.getId()))).withRel("eliminar")
         );
     }
 }
