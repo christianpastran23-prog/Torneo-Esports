@@ -18,7 +18,7 @@ public class UsuarioService {
 
     public List<Usuario> listarTodos(){return usuarioRepository.findAll();}
 
-    public Usuario buscarPorId(Integer id){return usuarioRepository.findById(id).orElse(null);}
+    public Usuario buscarPorId(Long id){return usuarioRepository.findById(id).orElse(null);}
 
     public Usuario guardar(Usuario usuario){return usuarioRepository.save(usuario);}
 
@@ -32,7 +32,7 @@ public class UsuarioService {
         return guardar(usuario);
     }
 
-    public Usuario actualizar(Integer id, UsuarioRequest request){
+    public Usuario actualizar(Long id, UsuarioRequest request){
         Usuario usuario = buscarPorId(id);
         if (usuario == null){
             return null;
@@ -46,7 +46,7 @@ public class UsuarioService {
         return guardar(usuario);
     }
 
-    public boolean eliminar(Integer id){
+    public boolean eliminar(Long id){
         Usuario usuario = buscarPorId(id);
         if(usuario == null){
             return false;

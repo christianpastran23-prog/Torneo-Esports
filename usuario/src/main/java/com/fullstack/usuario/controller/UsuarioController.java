@@ -45,7 +45,7 @@ public class UsuarioController {
 
     @GetMapping(value = "/{id}", produces = MediaTypes.HAL_JSON_VALUE)
     @Operation(summary = "Obtener el usuario por id", description = "Busca el usuario por su id y añade sus enlaces HATEOAS")
-    public ResponseEntity<EntityModel<Usuario>> buscarPorId(@PathVariable Integer id) {
+    public ResponseEntity<EntityModel<Usuario>> buscarPorId(@PathVariable Long id) {
         Usuario usuario = usuarioService.buscarPorId(id);
         if (usuario == null) {
             return ResponseEntity.notFound().build();
@@ -66,7 +66,7 @@ public class UsuarioController {
 
     @PutMapping(value = "/{id}", produces = MediaTypes.HAL_JSON_VALUE)
     @Operation(summary = "Actualizar un usuario", description = "Busca un usuario por su id, actualiza sus datos y refresca sus enlaces")
-    public ResponseEntity<EntityModel<Usuario>> actualizar(@PathVariable Integer id, @Valid @RequestBody UsuarioRequest request) {
+    public ResponseEntity<EntityModel<Usuario>> actualizar(@PathVariable Long id, @Valid @RequestBody UsuarioRequest request) {
         Usuario usuarioActualizado = usuarioService.actualizar(id, request);
         if (usuarioActualizado == null) {
             return ResponseEntity.notFound().build();
@@ -76,7 +76,7 @@ public class UsuarioController {
 
     @DeleteMapping(value = "/{id}", produces = MediaTypes.HAL_JSON_VALUE)
     @Operation(summary = "Borrar usuario por su id", description = "Busca un usuario por su id y lo elimina de la base de datos")
-    public ResponseEntity<Void> eliminar(@PathVariable Integer id) {
+    public ResponseEntity<Void> eliminar(@PathVariable Long id) {
         boolean eliminado = usuarioService.eliminar(id);
         if (!eliminado) {
             return ResponseEntity.notFound().build();
