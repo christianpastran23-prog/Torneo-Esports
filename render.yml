@@ -1,36 +1,47 @@
+envVarGroups:
+  - name: db-shared
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        sync: false
+      - key: SPRING_DATASOURCE_USERNAME
+        sync: false
+      - key: SPRING_DATASOURCE_PASSWORD
+        sync: false
+
 services:
   - type: web
     name: christianpastran-torneo-usuario
     runtime: docker
     plan: free
-    dockerContext: .                # <-- CAMBIADO: Ahora es el directorio raíz completo
-    dockerfilePath: ./usuario/Dockerfile  # <-- CAMBIADO: Ruta al Dockerfile desde la raíz
+    dockerContext: .
+    dockerfilePath: ./usuario/Dockerfile
     healthCheckPath: /actuator/health
+    envVarGroups:
+      - db-shared
     envVars:
       - key: EUREKA_ENABLED
         value: false
-      - key: SPRING_DATASOURCE_URL
-        value: ${DATABASE_URL_EXTERNAL}
-      - key: SPRING_DATASOURCE_USERNAME
-        value: ${DATABASE_USER}
-      - key: SPRING_DATASOURCE_PASSWORD
-        value: ${DATABASE_PASSWORD}
 
-  # 2. SERVICIO DE AUTENTICACIÓN
   - type: web
     name: christianpastran-torneo-auth
     runtime: docker
     plan: free
     dockerContext: ./auth-service
-    dockerfilePath: ./auth-service/Dockerfile # <-- Cambia esto también
+    dockerfilePath: ./auth-service/Dockerfile
     healthCheckPath: /actuator/health
+    envVarGroups:
+      - db-shared
+    envVars:
+      - key: EUREKA_ENABLED
+        value: false
 
-  # 3. API GATEWAY
   - type: web
     name: christianpastran-torneo-gateway
     runtime: docker
     plan: free
     dockerContext: ./getaway-service
-    dockerfilePath: ./getaway-service/Dockerfile # <-- Cambia esto también
+    dockerfilePath: ./getaway-service/Dockerfile
     healthCheckPath: /actuator/health
-    # ...
+    envVars:
+      - key: EUREKA_ENABLED
+        value: false
