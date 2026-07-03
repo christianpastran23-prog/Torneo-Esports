@@ -163,10 +163,10 @@ services:
         value: https://com-fullstack-torneo.onrender.com
 
   - type: web
-    name: TU-PREFIJO-fullstack-gateway
+    name: com-fullstack-gateway
     runtime: docker
     plan: free
-    dockerfilePath: ./render/docker/api-gateway.Dockerfile
+    dockerfilePath: ./render/docker/getaway-service.Dockerfile
     dockerContext: .
     healthCheckPath: /actuator/health
     envVars:
