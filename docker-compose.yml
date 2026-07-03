@@ -36,12 +36,10 @@ services:
       - eureka-server
     environment:
       - EUREKA_URL=http://eureka-server:8761/eureka/
-      - SPRING_DATASOURCE_URL=jdbc:mysql://host.docker.internal:3306/db_torneo_esports
-      - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD= # Pon 'root' aquí si tu Laragon tiene contraseña
+      - SPRING_DATASOURCE_URL=jdbc:mysql://avnadmin:AVNS_S9j_LnNsuM8kjeud6wc@torneo-esports-db1-torneo-esports.e.aivencloud.com:20740/defaultdb?ssl-mode=REQUIRED
+      - SPRING_DATASOURCE_USERNAME=avnadmin
+      - SPRING_DATASOURCE_PASSWORD=AVNS_S9j_LnNsuM8kjeud6wc
       - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
     networks:
       - torneo-network
 
@@ -56,12 +54,10 @@ services:
       - eureka-server
     environment:
       - EUREKA_URL=http://eureka-server:8761/eureka/
-      - SPRING_DATASOURCE_URL=jdbc:mysql://host.docker.internal:3306/db_torneo_esports
-      - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=
+      - SPRING_DATASOURCE_URL=jdbc:mysql://avnadmin:AVNS_S9j_LnNsuM8kjeud6wc@torneo-esports-db1-torneo-esports.e.aivencloud.com:20740/defaultdb?ssl-mode=REQUIRED
+      - SPRING_DATASOURCE_USERNAME=avnadmin
+      - SPRING_DATASOURCE_PASSWORD=AVNS_S9j_LnNsuM8kjeud6wc
       - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
     networks:
       - torneo-network
 
@@ -77,12 +73,10 @@ services:
       - usuario
     environment:
       - EUREKA_URL=http://eureka-server:8761/eureka/
-      - SPRING_DATASOURCE_URL=jdbc:mysql://host.docker.internal:3306/db_torneo_esports
-      - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=
+      - SPRING_DATASOURCE_URL=jdbc:mysql://avnadmin:AVNS_S9j_LnNsuM8kjeud6wc@torneo-esports-db1-torneo-esports.e.aivencloud.com:20740/defaultdb?ssl-mode=REQUIRED
+      - SPRING_DATASOURCE_USERNAME=avnadmin
+      - SPRING_DATASOURCE_PASSWORD=AVNS_S9j_LnNsuM8kjeud6wc
       - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
     networks:
       - torneo-network
 
@@ -97,9 +91,9 @@ services:
       - eureka-server
     environment:
       - EUREKA_URL=http://eureka-server:8761/eureka/
-      - SPRING_DATASOURCE_URL=jdbc:mysql://host.docker.internal:3306/db_torneo_esports
-      - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=
+      - SPRING_DATASOURCE_URL=jdbc:mysql://avnadmin:AVNS_S9j_LnNsuM8kjeud6wc@torneo-esports-db1-torneo-esports.e.aivencloud.com:20740/defaultdb?ssl-mode=REQUIRED
+      - SPRING_DATASOURCE_USERNAME=avnadmin
+      - SPRING_DATASOURCE_PASSWORD=AVNS_S9j_LnNsuM8kjeud6wc
       - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
     extra_hosts:
       - "host.docker.internal:host-gateway"
@@ -118,11 +112,9 @@ services:
       - inscripcion
     environment:
       - EUREKA_URL=http://eureka-server:8761/eureka/
-      - SPRING_DATASOURCE_URL=jdbc:mysql://host.docker.internal:3306/db_torneo_esports
-      - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+      - SPRING_DATASOURCE_URL=jdbc:mysql://avnadmin:AVNS_S9j_LnNsuM8kjeud6wc@torneo-esports-db1-torneo-esports.e.aivencloud.com:20740/defaultdb?ssl-mode=REQUIRED
+      - SPRING_DATASOURCE_USERNAME=avnadmin
+      - SPRING_DATASOURCE_PASSWORD=AVNS_S9j_LnNsuM8kjeud6wc
     networks:
       - torneo-network
 
@@ -137,9 +129,9 @@ services:
       - eureka-server
     environment:
       - EUREKA_URL=http://eureka-server:8761/eureka/
-      - SPRING_DATASOURCE_URL=jdbc:mysql://host.docker.internal:3306/db_torneo_esports
-      - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=
+      - SPRING_DATASOURCE_URL=jdbc:mysql://avnadmin:AVNS_S9j_LnNsuM8kjeud6wc@torneo-esports-db1-torneo-esports.e.aivencloud.com:20740/defaultdb?ssl-mode=REQUIRED
+      - SPRING_DATASOURCE_USERNAME=avnadmin
+      - SPRING_DATASOURCE_PASSWORD=AVNS_S9j_LnNsuM8kjeud6wc
     extra_hosts:
       - "host.docker.internal:host-gateway"
     networks:
@@ -156,12 +148,10 @@ services:
       - eureka-server
     environment:
       - EUREKA_URL=http://eureka-server:8761/eureka/
-      - SPRING_DATASOURCE_URL=jdbc:mysql://host.docker.internal:3306/db_torneo_esports
-      - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=
+      - SPRING_DATASOURCE_URL=jdbc:mysql://avnadmin:AVNS_S9j_LnNsuM8kjeud6wc@torneo-esports-db1-torneo-esports.e.aivencloud.com:20740/defaultdb?ssl-mode=REQUIRED
+      - SPRING_DATASOURCE_USERNAME=avnadmin
+      - SPRING_DATASOURCE_PASSWORD=AVNS_S9j_LnNsuM8kjeud6wc
       - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
     networks:
       - torneo-network
 
@@ -177,11 +167,9 @@ services:
       - torneo
     environment:
       - EUREKA_URL=http://eureka-server:8761/eureka/
-      - SPRING_DATASOURCE_URL=jdbc:mysql://host.docker.internal:3306/db_torneo_esports
-      - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+      - SPRING_DATASOURCE_URL=jdbc:mysql://avnadmin:AVNS_S9j_LnNsuM8kjeud6wc@torneo-esports-db1-torneo-esports.e.aivencloud.com:20740/defaultdb?ssl-mode=REQUIRED
+      - SPRING_DATASOURCE_USERNAME=avnadmin
+      - SPRING_DATASOURCE_PASSWORD=AVNS_S9j_LnNsuM8kjeud6wc
     networks:
       - torneo-network
 
@@ -197,11 +185,9 @@ services:
       - juegos
     environment:
       - EUREKA_URL=http://eureka-server:8761/eureka/
-      - SPRING_DATASOURCE_URL=jdbc:mysql://host.docker.internal:3306/db_torneo_esports
-      - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+      - SPRING_DATASOURCE_URL=jdbc:mysql://avnadmin:AVNS_S9j_LnNsuM8kjeud6wc@torneo-esports-db1-torneo-esports.e.aivencloud.com:20740/defaultdb?ssl-mode=REQUIRED
+      - SPRING_DATASOURCE_USERNAME=avnadmin
+      - SPRING_DATASOURCE_PASSWORD=AVNS_S9j_LnNsuM8kjeud6wc
     networks:
       - torneo-network
 
@@ -216,12 +202,10 @@ services:
       - eureka-server
     environment:
       - EUREKA_URL=http://eureka-server:8761/eureka/
-      - SPRING_DATASOURCE_URL=jdbc:mysql://host.docker.internal:3306/db_torneo_esports
-      - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=
+      - SPRING_DATASOURCE_URL=jdbc:mysql://avnadmin:AVNS_S9j_LnNsuM8kjeud6wc@torneo-esports-db1-torneo-esports.e.aivencloud.com:20740/defaultdb?ssl-mode=REQUIRED
+      - SPRING_DATASOURCE_USERNAME=avnadmin
+      - SPRING_DATASOURCE_PASSWORD=AVNS_S9j_LnNsuM8kjeud6wc
       - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
     networks:
       - torneo-network
 
@@ -237,11 +221,9 @@ services:
       - torneo
     environment:
       - EUREKA_URL=http://eureka-server:8761/eureka/
-      - SPRING_DATASOURCE_URL=jdbc:mysql://host.docker.internal:3306/db_torneo_esports
-      - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+      - SPRING_DATASOURCE_URL=jdbc:mysql://avnadmin:AVNS_S9j_LnNsuM8kjeud6wc@torneo-esports-db1-torneo-esports.e.aivencloud.com:20740/defaultdb?ssl-mode=REQUIRED
+      - SPRING_DATASOURCE_USERNAME=avnadmin
+      - SPRING_DATASOURCE_PASSWORD=AVNS_S9j_LnNsuM8kjeud6wc
     networks:
       - torneo-network
 

@@ -1,12 +1,9 @@
-# Render Blueprint educativo (Free): 6 Web Services públicos.
-# Reemplazar "demo" por un nombre propio o identificador corto y único que te identifique.
-# Eureka se conserva para Docker local, pero se desactiva en Render Free.
 services:
   - type: web
     name: com-fullstack-auth
     runtime: docker
     plan: free
-    dockerfilePath: ./render/docker/cliente-service.Dockerfile
+    dockerfilePath: ./render/docker/auth-service.Dockerfile
     dockerContext: .
     healthCheckPath: /actuator/health
     envVars:
@@ -14,10 +11,10 @@ services:
         value: false
 
   - type: web
-    name: demo-fullstack-producto
+    name: com-fullstack-juegos
     runtime: docker
     plan: free
-    dockerfilePath: ./render/docker/producto-service.Dockerfile
+    dockerfilePath: ./render/docker/juegos.Dockerfile
     dockerContext: .
     healthCheckPath: /actuator/health
     envVars:
@@ -25,10 +22,32 @@ services:
         value: false
 
   - type: web
-    name: demo-fullstack-pedido
+    name: com-fullstack-usuario
     runtime: docker
     plan: free
-    dockerfilePath: ./render/docker/pedido-service.Dockerfile
+    dockerfilePath: ./render/docker/usuario.Dockerfile
+    dockerContext: .
+    healthCheckPath: /actuator/health
+    envVars:
+      - key: EUREKA_ENABLED
+        value: false
+
+  - type: web
+    name: com-fullstack-torneo
+    runtime: docker
+    plan: free
+    dockerfilePath: ./render/docker/torneo.Dockerfile
+    dockerContext: .
+    healthCheckPath: /actuator/health
+    envVars:
+      - key: EUREKA_ENABLED
+        value: false
+
+  - type: web
+    name: com-fullstack-inscripcion
+    runtime: docker
+    plan: free
+    dockerfilePath: ./render/docker/inscripcion-service.Dockerfile
     dockerContext: .
     healthCheckPath: /actuator/health
     envVars:
@@ -36,16 +55,18 @@ services:
         value: false
       - key: APP_DISCOVERY_ENABLED
         value: false
-      - key: CLIENTE_SERVICE_URL
-        value: https://demo-fullstack-cliente.onrender.com
-      - key: PRODUCTO_SERVICE_URL
-        value: https://demo-fullstack-producto.onrender.com
+      - key: TORNEO_URL
+        value: https://com-fullstack-torneo.onrender.com
+      - key: USUARIO_URL
+        value: https://com-fullstack-usuario.onrender.com
+      - key: JUEGOS_URL
+        value: https://com-fullstack-juegos.onrender.com
 
   - type: web
-    name: demo-fullstack-pago
+    name: com-fullstack-comentario-torneo
     runtime: docker
     plan: free
-    dockerfilePath: ./render/docker/pago-service.Dockerfile
+    dockerfilePath: ./render/docker/comentario-torneo.Dockerfile
     dockerContext: .
     healthCheckPath: /actuator/health
     envVars:
@@ -53,14 +74,16 @@ services:
         value: false
       - key: APP_DISCOVERY_ENABLED
         value: false
-      - key: PEDIDO_SERVICE_URL
-        value: https://demo-fullstack-pedido.onrender.com
+      - key: TORNEO_URL
+        value: https://com-fullstack-torneo.onrender.com
+      - key: USUARIO_URL
+        value: https://com-fullstack-usuario.onrender.com
 
   - type: web
-    name: demo-fullstack-despacho
+    name: com-fullstack-favorito-juego
     runtime: docker
     plan: free
-    dockerfilePath: ./render/docker/despacho-service.Dockerfile
+    dockerfilePath: ./render/docker/favorito-juego.Dockerfile
     dockerContext: .
     healthCheckPath: /actuator/health
     envVars:
@@ -68,11 +91,79 @@ services:
         value: false
       - key: APP_DISCOVERY_ENABLED
         value: false
-      - key: PEDIDO_SERVICE_URL
-        value: https://demo-fullstack-pedido.onrender.com
+      - key: USUARIO_URL
+        value: https://com-fullstack-usuario.onrender.com
+      - key: JUEGOS_URL
+        value: https://com-fullstack-juegos.onrender.com
 
   - type: web
-    name: demo-fullstack-gateway
+    name: com-fullstack-ficha-partida
+    runtime: docker
+    plan: free
+    dockerfilePath: ./render/docker/ficha-partida.Dockerfile
+    dockerContext: .
+    healthCheckPath: /actuator/health
+    envVars:
+      - key: EUREKA_ENABLED
+        value: false
+      - key: APP_DISCOVERY_ENABLED
+        value: false
+      - key: TORNEO_URL
+        value: https://com-fullstack-torneo.onrender.com
+      - key: USUARIO_URL
+        value: https://com-fullstack-usuario.onrender.com
+      - key: JUEGOS_URL
+        value: https://com-fullstack-juegos.onrender.com
+
+  - type: web
+    name: com-fullstack-historial-juego
+    runtime: docker
+    plan: free
+    dockerfilePath: ./render/docker/historial-juego.Dockerfile
+    dockerContext: .
+    healthCheckPath: /actuator/health
+    envVars:
+      - key: EUREKA_ENABLED
+        value: false
+      - key: APP_DISCOVERY_ENABLED
+        value: false
+      - key: USUARIO_URL
+        value: https://com-fullstack-usuario.onrender.com
+      - key: JUEGOS_URL
+        value: https://com-fullstack-juegos.onrender.com
+
+  - type: web
+    name: com-fullstack-notificacion-usuario
+    runtime: docker
+    plan: free
+    dockerfilePath: ./render/docker/notificacion-usuario.Dockerfile
+    dockerContext: .
+    healthCheckPath: /actuator/health
+    envVars:
+      - key: EUREKA_ENABLED
+        value: false
+      - key: APP_DISCOVERY_ENABLED
+        value: falsem
+      - key: USUARIO_URL
+        value: https://com-fullstack-usuario.onrender.com
+
+  - type: web
+    name: com-fullstack-torneo-patrocinador
+    runtime: docker
+    plan: free
+    dockerfilePath: ./render/docker/torneo-patrocinador.Dockerfile
+    dockerContext: .
+    healthCheckPath: /actuator/health
+    envVars:
+      - key: EUREKA_ENABLED
+        value: false
+      - key: APP_DISCOVERY_ENABLED
+        value: false
+      - key: TORNEO_URL
+        value: https://com-fullstack-torneo.onrender.com
+
+  - type: web
+    name: TU-PREFIJO-fullstack-gateway
     runtime: docker
     plan: free
     dockerfilePath: ./render/docker/api-gateway.Dockerfile
@@ -81,13 +172,25 @@ services:
     envVars:
       - key: EUREKA_ENABLED
         value: false
-      - key: CLIENTE_SERVICE_URL
-        value: https://demo-fullstack-cliente.onrender.com
-      - key: PRODUCTO_SERVICE_URL
-        value: https://demo-fullstack-producto.onrender.com
-      - key: PEDIDO_SERVICE_URL
-        value: https://demo-fullstack-pedido.onrender.com
-      - key: PAGO_SERVICE_URL
-        value: https://demo-fullstack-pago.onrender.com
-      - key: DESPACHO_SERVICE_URL
-        value: https://demo-fullstack-despacho.onrender.com
+      - key: AUTH-SERVICE_URL
+        value: https://com-fullstack-auth.onrender.com
+      - key: COMENTARIO_TORNEO_URL
+        value: https://com-fullstack-comentario-torneo.onrender.com
+      - key: FAVORITO_JUEGO_URL
+        value: https://com-fullstack-favorito-juego.onrender.com
+      - key: FICHA_PARTIDA_URL
+        value: https://com-fullstack-ficha-partida.onrender.com
+      - key: HISTORIAL_JUEGO_URL
+        value: https://com-fullstack-historial-juego.onrender.com
+      - key: INSCRIPCION_URL
+        value: https://com-fullstack-inscripcion.onrender.com
+      - key: JUEGOS_URL
+        value: https://com-fullstack-juegos.onrender.com
+      - key: NOTIFICACION_USUARIO_URL
+        value: https://com-fullstack-notificacion-usuario.onrender.com
+      - key: TORNEO_URL
+        value: https://com-fullstack-torneo.onrender.com
+      - key: USUARIO_URL
+        value: https://com-fullstack-usuario.onrender.com
+      - key: TORNEO_PATROCINADOR_URL
+        value: https://com-fullstack-torneo-patrocinador.onrender.com
