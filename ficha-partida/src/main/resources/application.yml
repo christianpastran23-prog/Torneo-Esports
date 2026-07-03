@@ -6,9 +6,9 @@ spring:
     name: ficha-partida
 
   datasource:
-    url: jdbc:mysql://avnadmin:AVNS_S9j_LnNsuM8kjeud6wc@torneo-esports-db1-torneo-esports.e.aivencloud.com:20740/defaultdb?ssl-mode=REQUIRED
-    username: avnadmin
-    password: AVNS_S9j_LnNsuM8kjeud6wc
+    url: jdbc:mysql://${DB_USER:avnadmin}:${DB_PASSWORD}@torneo-esports-db1-torneo-esports.e.aivencloud.com:20740/defaultdb?ssl-mode=REQUIRED
+    username: ${DB_USER:avnadmin}
+    password: ${DB_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   flyway:
