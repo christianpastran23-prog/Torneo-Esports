@@ -1,0 +1,151 @@
+services:
+  gateway-service:
+    build: ./gateway-service
+    ports:
+      - "8080:8080"
+    depends_on:
+      - auth-service
+      - comentario-torneo
+      - favorito-juego
+      - ficha-partida
+      - historial-juego
+      - inscripcion
+      - juegos
+      - notificacion-usuario
+      - torneo
+      - torneo-patrocinador
+      - usuario
+    environment:
+      - EUREKA_ENABLED=false
+      - AUTH-SERVICE_URL=http://auth-service:8081
+      - COMENTARIO_TORNEO_URL=http://comentario-torneo:8088
+      - FAVORITO_JUEGO_URL=http://favorito-juego:8089
+      - FICHA_PARTIDA_URL=http://ficha-partida:8090
+      - HISTORIAL_JUEGO_URL=http://historial-juego:8085
+      - INSCRIPCION_URL=http://inscripcion:8083
+      - JUEGOS_URL=http://juegos:8087
+      - NOTIFICACION_USUARIO_URL=http://notificacion-usuario:8086
+      - TORNEO_URL=http://torneo:8084
+      - TORNEO_PATROCINADOR_URL=http://torneo-patrocinador:8091
+      - USUARIO_URL=http://usuario:8082
+
+  auth-service:
+    build: ./auth-service
+    ports:
+      - "8081:8081"
+    environment:
+      - EUREKA_ENABLED=false
+
+  comentario-torneo:
+    build: ./comentario-torneo
+    ports:
+      - "8088:8088"
+    depends_on:
+      - torneo
+      - usuario
+    environment:
+      - EUREKA_ENABLED=false
+      - APP_DISCOVERY_ENABLED=false
+      - TORNEO_URL=http://torneo:8084
+      - USUARIO_URL=http://usuario:8082
+
+  favorito-juego:
+    build: ./favorito-juego
+    ports:
+      - "8089:8089"
+    depends_on:
+      - juegos
+      - usuario
+    environment:
+      - EUREKA_ENABLED=false
+      - APP_DISCOVERY_ENABLED=false
+      - JUEGOS_URL=http://juegos:8087
+      - USUARIO_URL=http://usuario:8082
+
+  ficha-partida:
+    build: ./ficha-partida
+    ports:
+      - "8090:8090"
+    depends_on:
+      - usuario
+      - torneo
+      - juegos
+    environment:
+      - EUREKA_ENABLED=false
+      - APP_DISCOVERY_ENABLED=false
+      - JUEGOS_URL=http://juegos:8087
+      - USUARIO_URL=http://usuario:8082
+      - TORNEO_URL=http://torneo:8084
+
+  historial-juego:
+    build: ./historial-juego
+    ports:
+      - "8085:8085"
+    depends_on:
+      - juegos
+      - usuario
+    environment:
+      - EUREKA_ENABLED=false
+      - APP_DISCOVERY_ENABLED=false
+      - JUEGOS_URL=http://juegos:8087
+      - USUARIO_URL=http://usuario:8082
+
+  inscripcion:
+    build: ./inscripcion
+    ports:
+      - "8083:8083"
+    depends_on:
+      - juegos
+      - usuario
+      - torneo
+    environment:
+      - EUREKA_ENABLED=false
+      - APP_DISCOVERY_ENABLED=false
+      - JUEGOS_URL=http://juegos:8087
+      - USUARIO_URL=http://usuario:8082
+      - TORNEO_URL=http://torneo:8084
+
+  juegos:
+    build: ./juegos
+    ports:
+      - "8087:8087"
+    environment:
+      - EUREKA_ENABLED=false
+
+  notificacion-usuario:
+    build: ./notificacion-usuario
+    ports:
+      - "8086:8086"
+    depends_on:
+      - usuario
+    environment:
+      - EUREKA_ENABLED=false
+      - APP_DISCOVERY_ENABLED=false
+      - USUARIO_URL=http://usuario:8082
+
+  torneo:
+    build: ./torneo
+    ports:
+      - "8084:8084"
+    environment:
+      - EUREKA_ENABLED=false
+
+  torneo-patrocinador:
+    build: ./torneo-patrocinador
+    ports:
+      - "8091:8091"
+    depends_on:
+      - torneo
+    environment:
+      - EUREKA_ENABLED=false
+      - APP_DISCOVERY_ENABLED=false
+      - TORNEO_URL=http://torneo:8084
+
+  usuario:
+    build: ./usuario
+    ports:
+      - "8082:8082"
+    environment:
+      - EUREKA_ENABLED=false
+
+

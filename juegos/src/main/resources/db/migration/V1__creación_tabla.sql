@@ -1,0 +1,7 @@
+CREATE TABLE juegos(
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    titulo VARCHAR(255) NOT NULL,
+    desarrollador VARCHAR(255) NOT NULL,
+    versionJuego VARCHAR(255) NOT NULL,
+    categoria VARCHAR(255) NOT NULL
+);

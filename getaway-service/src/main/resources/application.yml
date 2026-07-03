@@ -1,0 +1,70 @@
+server:
+port: ${PORT:8080}
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: auth-service
+          uri: ${AUTH_SERVICE_URL:lb://AUTH-SERVICE}
+          predicates:
+            - Path=/api/auth/**
+        - id: comentario-torneo
+          uri: ${COMENTARIO_TORNEO_URL:lb://COMENTARIO-TORNEO}
+          predicates:
+            - Path=/api/comentario-torneos/**
+        - id: favorito-juego
+          uri: ${FAVORITO_JUEGO_URL:lb://FAVORITO-JUEGO}
+          predicates:
+            - Path=/api/favorito-juegos/**
+        - id: ficha-partida
+          uri: ${FICHA_PARTIDA_URL:lb://FICHA-PARTIDA}
+          predicates:
+            - Path=/api/ficha_partidas/**
+        - id: historial-juego
+          uri: ${HISTORIAL_JUEGO_URL:lb://HISTORIAL-JUEGO}
+          predicates:
+            - Path=/api/historial-juegos/**
+        - id: inscripcion
+          uri: ${INSCRIPCION_URL:lb://INSCRIPCION}
+          predicates:
+            - Path=/api/inscripciones/**
+        - id: juegos
+          uri: ${JUEGOS_URL:lb://JUEGOS}
+          predicates:
+            - Path=/api/juegos/**
+        - id: notificacion-usuario
+          uri: ${NOTIFICACION_USUARIO_URL:lb://NOTIFICACION-USUARIO}
+          predicates:
+            - Path=/api/notificacion-usuario/**
+        - id: torneo
+          uri: ${TORNEO_URL:lb://TORNEO}
+          predicates:
+            - Path=/api/torneos/**
+        - id: torneo-patrocinador
+          uri: ${TORNEO_PATROCINADOR_URL:lb://TORNEO-PATROCINADOR}
+          predicates:
+            - Path=/api/torneo-patrocinador/**
+        - id: usuario
+          uri: ${USUARIO_URL:lb://USUARIO}
+          predicates:
+            - Path=/api/usuarios/**
+
+management:
+  endpoint:
+    gateway:
+      access: read-only
+  endpoints:
+    web:
+      exposure:
+        include: health,info,gateway
+
+eureka:
+  client:
+    enabled: ${EUREKA_ENABLED:true}
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka/}
+  instance:
+    prefer-ip-address: true

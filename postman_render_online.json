@@ -1,0 +1,306 @@
+{
+  "info": {
+    "name": "Proyecto Gaming - API Gateway",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "gateway_url",
+      "value": "http://localhost:8080"
+    }
+  ],
+  "item": [
+    {
+      "name": "Comentarios Torneo",
+      "item": [
+        {
+          "name": "Listar comentarios de torneos",
+          "request": {
+            "method": "GET",
+            "url": "{{gateway_url}}/api/comentario-torneos"
+          }
+        },
+        {
+          "name": "Crear comentario de torneo",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"usuarioId\": 1,\n  \"torneoId\": 1,\n  \"username\": \"skater99\",\n  \"region\": \"Santiago\",\n  \"mensajeComentario\": \"¡Excelente organización del torneo!\",\n  \"nombreTorneo\": \"Copa Verano 2026\"\n}"
+            },
+            "url": "{{gateway_url}}/api/comentario-torneos"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Favoritos Juegos",
+      "item": [
+        {
+          "name": "Listar juegos favoritos",
+          "request": {
+            "method": "GET",
+            "url": "{{gateway_url}}/api/favorito-juegos"
+          }
+        },
+        {
+          "name": "Agregar juego a favoritos",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"usuarioId\": 1,\n  \"juegoId\": 1,\n  \"username\": \"skater99\",\n  \"region\": \"Santiago\",\n  \"titulo\": \"Street Fighter 6\",\n  \"versionJuego\": \"v1.0.4\",\n  \"desarrollador\": \"Capcom\",\n  \"horasDeJuego\": 45\n}"
+            },
+            "url": "{{gateway_url}}/api/favorito-juegos"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Fichas Partidas",
+      "item": [
+        {
+          "name": "Listar fichas de partidas",
+          "request": {
+            "method": "GET",
+            "url": "{{gateway_url}}/api/ficha_partidas"
+          }
+        },
+        {
+          "name": "Crear ficha de partida",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"usuarioId\": 1,\n  \"torneoId\": 1,\n  \"juegoId\": 1,\n  \"username\": \"skater99\",\n  \"email\": \"usuario@email.com\",\n  \"puntaje\": 1500,\n  \"nombreTorneo\": \"Copa Verano 2026\",\n  \"estado\": \"FINALIZADO\",\n  \"fechaInicio\": \"2026-07-03T15:00:00\",\n  \"region\": \"Santiago\",\n  \"premioDolares\": 500,\n  \"titulo\": \"Counter-Strike 2\",\n  \"categoria\": \"Shooter\",\n  \"KD\": 2,\n  \"resultado\": \"VICTORIA\",\n  \"puntos\": 3,\n  \"fechaPartida\": \"2026-07-03T16:30:00\"\n}"
+            },
+            "url": "{{gateway_url}}/api/ficha_partidas"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Historial Juegos",
+      "item": [
+        {
+          "name": "Listar historial de juegos",
+          "request": {
+            "method": "GET",
+            "url": "{{gateway_url}}/api/historial-juegos"
+          }
+        },
+        {
+          "name": "Registrar en historial de juego",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"usuarioId\": 1,\n  \"juegoId\": 2,\n  \"username\": \"skater99\",\n  \"titulo\": \"Tekken 8\",\n  \"tiempoJugado\": 120\n}"
+            },
+            "url": "{{gateway_url}}/api/historial-juegos"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Inscripciones",
+      "item": [
+        {
+          "name": "Listar inscripciones",
+          "request": {
+            "method": "GET",
+            "url": "{{gateway_url}}/api/inscripciones"
+          }
+        },
+        {
+          "name": "Crear inscripción",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"usuarioId\": 1,\n  \"torneoId\": 1,\n  \"juegoId\": 1,\n  \"username\": \"skater99\",\n  \"region\": \"Santiago\",\n  \"nombreTorneo\": \"Copa Verano 2026\",\n  \"estado\": \"PENDIENTE\",\n  \"titulo\": \"Valorant\",\n  \"versionJuego\": \"v8.0\",\n  \"desarrollador\": \"Riot Games\",\n  \"categoria\": \"FPS\",\n  \"rolEquipo\": \"Duelista\",\n  \"fechaInscripcion\": \"2026-07-03T12:00:00\",\n  \"cupoConfirmado\": true\n}"
+            },
+            "url": "{{gateway_url}}/api/inscripciones"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Juegos",
+      "item": [
+        {
+          "name": "Listar juegos",
+          "request": {
+            "method": "GET",
+            "url": "{{gateway_url}}/api/juegos"
+          }
+        },
+        {
+          "name": "Crear juego",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"titulo\": \"League of Legends\",\n  \"desarrollador\": \"Riot Games\",\n  \"versionJuego\": \"14.5\",\n  \"categoria\": \"MOBA\"\n}"
+            },
+            "url": "{{gateway_url}}/api/juegos"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Notificaciones Usuario",
+      "item": [
+        {
+          "name": "Listar notificaciones",
+          "request": {
+            "method": "GET",
+            "url": "{{gateway_url}}/api/notificacion-usuario"
+          }
+        },
+        {
+          "name": "Crear notificación",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"usuarioId\": 1,\n  \"username\": \"skater99\",\n  \"mensaje\": \"Tu inscripción al torneo ha sido confirmada con éxito.\",\n  \"leido\": \"NO\"\n}"
+            },
+            "url": "{{gateway_url}}/api/notificacion-usuario"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Torneos",
+      "item": [
+        {
+          "name": "Listar torneos",
+          "request": {
+            "method": "GET",
+            "url": "{{gateway_url}}/api/torneos"
+          }
+        },
+        {
+          "name": "Crear torneo",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombreTorneo\": \"Copa Verano 2026\",\n  \"fechaInicio\": \"2026-07-03T18:00:00\",\n  \"estado\": \"INSCRIPCIONES_ABIERTAS\",\n  \"premioDolares\": 1000\n}"
+            },
+            "url": "{{gateway_url}}/api/torneos"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Patrocinadores de Torneos",
+      "item": [
+        {
+          "name": "Listar patrocinadores",
+          "request": {
+            "method": "GET",
+            "url": "{{gateway_url}}/api/torneo-patrocinador"
+          }
+        },
+        {
+          "name": "Asignar patrocinador",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"torneoId\": 1,\n  \"nombreEmpresa\": \"HyperX Chile\",\n  \"contacto\": \"contacto@hyperx.cl\",\n  \"nombreTorneo\": \"Copa Verano 2026\"\n}"
+            },
+            "url": "{{gateway_url}}/api/torneo-patrocinador"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Usuarios",
+      "item": [
+        {
+          "name": "Listar usuarios",
+          "request": {
+            "method": "GET",
+            "url": "{{gateway_url}}/api/usuarios"
+          }
+        },
+        {
+          "name": "Crear usuario",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"skater99\",\n  \"email\": \"usuario@email.com\",\n  \"region\": \"Santiago\",\n  \"puntaje\": 0\n}"
+            },
+            "url": "{{gateway_url}}/api/usuarios"
+          }
+        }
+      ]
+    }
+  ]
+}
+
+

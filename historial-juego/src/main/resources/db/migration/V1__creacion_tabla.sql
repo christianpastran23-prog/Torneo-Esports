@@ -1,0 +1,8 @@
+CREATE TABLE historial(
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    usuarioId BIGINT NOT NULL,
+    juegoId BIGINT NOT NULL,
+    username VARCHAR(255) NOT NULL,
+    titulo VARCHAR(255) NOT NULL,
+    tiempoJugado INTEGER NOT NULL
+);

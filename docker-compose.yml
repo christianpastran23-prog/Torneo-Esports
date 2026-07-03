@@ -1,0 +1,250 @@
+services:
+  eureka-server:
+    build:
+      context: ./eureka-server
+      dockerfile: Dockerfile
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+    networks:
+      - torneo-network
+
+  getaway-service:
+    build:
+      context: ./getaway-service
+      dockerfile: Dockerfile
+    container_name: getaway-service
+    ports:
+      - "8080:8080"
+    depends_on:
+      - eureka-server
+    environment:
+      - EUREKA_URL=http://eureka-server:8761/eureka/
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - torneo-network
+
+  auth-service:
+    build:
+      context: ./auth-service
+      dockerfile: Dockerfile
+    container_name: auth-service
+    ports:
+      - "8081:8081"
+    depends_on:
+      - eureka-server
+    environment:
+      - EUREKA_URL=http://eureka-server:8761/eureka/
+      - SPRING_DATASOURCE_URL=jdbc:mysql://host.docker.internal:3306/db_torneo_esports
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD= # Pon 'root' aquí si tu Laragon tiene contraseña
+      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - torneo-network
+
+  usuario:
+    build:
+      context: ./usuario
+      dockerfile: Dockerfile
+    container_name: usuario-service
+    ports:
+      - "8082:8082"
+    depends_on:
+      - eureka-server
+    environment:
+      - EUREKA_URL=http://eureka-server:8761/eureka/
+      - SPRING_DATASOURCE_URL=jdbc:mysql://host.docker.internal:3306/db_torneo_esports
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=
+      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - torneo-network
+
+  inscripcion:
+    build:
+      context: ./inscripcion
+      dockerfile: Dockerfile
+    container_name: inscripcion-service
+    ports:
+      - "8083:8083"
+    depends_on:
+      - eureka-server
+      - usuario
+    environment:
+      - EUREKA_URL=http://eureka-server:8761/eureka/
+      - SPRING_DATASOURCE_URL=jdbc:mysql://host.docker.internal:3306/db_torneo_esports
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=
+      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - torneo-network
+
+  torneo:
+    build:
+      context: ./torneo
+      dockerfile: Dockerfile
+    container_name: torneo-service
+    ports:
+      - "8084:8084"
+    depends_on:
+      - eureka-server
+    environment:
+      - EUREKA_URL=http://eureka-server:8761/eureka/
+      - SPRING_DATASOURCE_URL=jdbc:mysql://host.docker.internal:3306/db_torneo_esports
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=
+      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - torneo-network
+
+  historial-juego:
+    build:
+      context: ./historial-juego
+      dockerfile: Dockerfile
+    container_name: historial-juego-service
+    ports:
+      - "8085:8085"
+    depends_on:
+      - eureka-server
+      - inscripcion
+    environment:
+      - EUREKA_URL=http://eureka-server:8761/eureka/
+      - SPRING_DATASOURCE_URL=jdbc:mysql://host.docker.internal:3306/db_torneo_esports
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - torneo-network
+
+  notificacion-usuario:
+    build:
+      context: ./notificacion-usuario
+      dockerfile: Dockerfile
+    container_name: notificacion-service
+    ports:
+      - "8086:8086"
+    depends_on:
+      - eureka-server
+    environment:
+      - EUREKA_URL=http://eureka-server:8761/eureka/
+      - SPRING_DATASOURCE_URL=jdbc:mysql://host.docker.internal:3306/db_torneo_esports
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - torneo-network
+
+  juegos:
+    build:
+      context: ./juegos
+      dockerfile: Dockerfile
+    container_name: juegos-service
+    ports:
+      - "8087:8087"
+    depends_on:
+      - eureka-server
+    environment:
+      - EUREKA_URL=http://eureka-server:8761/eureka/
+      - SPRING_DATASOURCE_URL=jdbc:mysql://host.docker.internal:3306/db_torneo_esports
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=
+      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - torneo-network
+
+  comentario-torneo:
+    build:
+      context: ./comentario-torneo
+      dockerfile: Dockerfile
+    container_name: comentario-torneo-service
+    ports:
+      - "8088:8088"
+    depends_on:
+      - eureka-server
+      - torneo
+    environment:
+      - EUREKA_URL=http://eureka-server:8761/eureka/
+      - SPRING_DATASOURCE_URL=jdbc:mysql://host.docker.internal:3306/db_torneo_esports
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - torneo-network
+
+  favorito-juego:
+    build:
+      context: ./favorito-juego
+      dockerfile: Dockerfile
+    container_name: favorito-juego-service
+    ports:
+      - "8089:8089"
+    depends_on:
+      - eureka-server
+      - juegos
+    environment:
+      - EUREKA_URL=http://eureka-server:8761/eureka/
+      - SPRING_DATASOURCE_URL=jdbc:mysql://host.docker.internal:3306/db_torneo_esports
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - torneo-network
+
+  ficha-partida:
+    build:
+      context: ./ficha-partida
+      dockerfile: Dockerfile
+    container_name: ficha-partida-service
+    ports:
+      - "8090:8090"
+    depends_on:
+      - eureka-server
+    environment:
+      - EUREKA_URL=http://eureka-server:8761/eureka/
+      - SPRING_DATASOURCE_URL=jdbc:mysql://host.docker.internal:3306/db_torneo_esports
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=
+      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - torneo-network
+
+  torneo-patrocinador:
+    build:
+      context: ./torneo-patrocinador
+      dockerfile: Dockerfile
+    container_name: torneo-patrocinador-service
+    ports:
+      - "8091:8091"
+    depends_on:
+      - eureka-server
+      - torneo
+    environment:
+      - EUREKA_URL=http://eureka-server:8761/eureka/
+      - SPRING_DATASOURCE_URL=jdbc:mysql://host.docker.internal:3306/db_torneo_esports
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - torneo-network
+
+networks:
+  torneo-network:
+    driver: bridge
