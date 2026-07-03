@@ -28,7 +28,6 @@ public class SecurityConfig {
                 .httpBasic(httpBasic -> httpBasic.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        // 1. Añadimos todas las rutas que necesita Swagger y OpenAPI de forma pública
                         .requestMatchers(
                                 "/v3/api-docs/**",
                                 "/v3/api-docs.yaml",
@@ -37,10 +36,11 @@ public class SecurityConfig {
                                 "/swagger-ui/**",
                                 "/swagger-ui/index.html",
                                 "/swagger-resources/**",
-                                "/webjars/**"
+                                "/webjars/**",
+                                "/actuator/health",
+                                "/actuator/health/**"
                         ).permitAll()
 
-                        // 2. Todo lo demás sigue protegido
                         .anyRequest().authenticated()
                 )
                 .exceptionHandling(ex -> ex
