@@ -6,5 +6,5 @@ RUN mvn -pl ficha-partida -am clean package -DskipTests
 FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 COPY --from=build /workspace/ficha-partida/target/*.jar app.jar
-EXPOSE 10000
+EXPOSE 8090
 ENTRYPOINT ["java", "-jar", "app.jar"]

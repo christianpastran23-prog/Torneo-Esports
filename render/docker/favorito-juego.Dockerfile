@@ -6,5 +6,5 @@ RUN mvn -pl favorito-juego -am clean package -DskipTests
 FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 COPY --from=build /workspace/favorito-juego/target/*.jar app.jar
-EXPOSE 10000
+EXPOSE 8089
 ENTRYPOINT ["java", "-jar", "app.jar"]

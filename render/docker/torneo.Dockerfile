@@ -6,5 +6,5 @@ RUN mvn -pl torneo -am clean package -DskipTests
 FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 COPY --from=build /workspace/torneo/target/*.jar app.jar
-EXPOSE 10000
+EXPOSE 8084
 ENTRYPOINT ["java", "-jar", "app.jar"]

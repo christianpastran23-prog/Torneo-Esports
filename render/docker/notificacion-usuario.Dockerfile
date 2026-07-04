@@ -6,5 +6,5 @@ RUN mvn -pl notificacion-usuario -am clean package -DskipTests
 FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 COPY --from=build /workspace/notificacion-usuario/target/*.jar app.jar
-EXPOSE 10000
+EXPOSE 8086
 ENTRYPOINT ["java", "-jar", "app.jar"]
