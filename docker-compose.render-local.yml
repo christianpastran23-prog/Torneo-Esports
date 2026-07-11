@@ -1,6 +1,6 @@
 services:
-  gateway-service:
-    build: ./gateway-service
+  getaway-service:
+    build: ./getaway-service
     ports:
       - "8080:8080"
     depends_on:

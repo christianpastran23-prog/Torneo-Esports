@@ -1,14 +1,17 @@
 server:
-  port: 8084
+  port: ${PORT:8084}
 
 spring:
   application:
     name: torneos
 
   datasource:
-    url: jdbc:mysql://db-mysql:3306/db_torneo_esports
-    username: root
-    password: root
+    hikari:
+      maximum-pool-size: 3
+      minimum-idle: 1
+    url: jdbc:mysql://${DB_USER:avnadmin}:${DB_PASSWORD}@torneo-esports-db1-torneo-esports.e.aivencloud.com:20740/defaultdb?ssl-mode=REQUIRED
+    username: ${DB_USER:avnadmin}
+    password: ${DB_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   flyway:

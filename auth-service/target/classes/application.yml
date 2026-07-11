@@ -1,14 +1,14 @@
 server:
-  port: 8081
+  port: ${PORT:8081}
 
 spring:
   application:
     name: auth-service
 
   datasource:
-    url: jdbc:mysql://db-mysql:3306/db_torneo_esports
-    username: root
-    password: root
+    url: jdbc:mysql://${DB_USER:avnadmin}:${DB_PASSWORD}@torneo-esports-db1-torneo-esports.e.aivencloud.com:20740/defaultdb?ssl-mode=REQUIRED
+    username: ${DB_USER:avnadmin}
+    password: ${DB_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   flyway:
